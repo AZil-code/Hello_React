@@ -40,6 +40,12 @@ export function SeasonClock() {
       if (checkDate < seasonTransitions[3]) return 'Autumn';
    }
 
+   function generateClock() {
+      return [timer.getHours(), timer.getMinutes(), timer.getSeconds()]
+         .map((num) => (num < 10 ? `0${num}` : num))
+         .join(':');
+   }
+
    day = dayNames[timer.getDay()];
    month = monthNames[timer.getMonth()];
    season = getSeason(timer);
@@ -49,6 +55,7 @@ export function SeasonClock() {
          <h2>{`${month} (${season})`}</h2>
          <img src={`./assets/img/season-imgs/${season.toLowerCase()}.png`}></img>
          <h3>{day}</h3>
+         <h3 className="clock">{generateClock()}</h3>
       </section>
    );
 }
