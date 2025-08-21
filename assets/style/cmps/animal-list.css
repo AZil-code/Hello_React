@@ -1,0 +1,23 @@
+.animals-container {
+   background-color: rgb(126, 151, 34);
+   color: white;
+}
+
+.animals-container table,
+td {
+   border: 1.5px;
+   border-style: groove;
+   border-collapse: collapse;
+   border-color: black;
+}
+
+.animals-container td {
+   min-width: 200px;
+   max-width: 300px;
+}
+
+.animals-container a {
+   color: rgb(41, 5, 247);
+   font-weight: bold;
+   text-decoration: underline;
+}
