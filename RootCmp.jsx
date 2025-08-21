@@ -1,6 +1,7 @@
 import { AnimalList } from './cmps/AnimalList.jsx';
 import { AppHeader } from './cmps/AppHeader.jsx';
 import { Home } from './cmps/Home.jsx';
+import { SeasonClock } from './cmps/SeasonClock.jsx';
 
 const animalInfo = [
    { type: 'Malayan Tiger', count: 787 },
@@ -15,7 +16,8 @@ export function RootCmp() {
          <AppHeader />
          <main>
             <Home />
-            <AnimalList animalInfos={animalInfo} />
+            {/* <AnimalList animalInfos={animalInfo} /> */}
+            <SeasonClock />
          </main>
       </section>
    );

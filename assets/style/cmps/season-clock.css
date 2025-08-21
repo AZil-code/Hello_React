@@ -1,0 +1,17 @@
+/* .season-clock dark {
+   background-color: rgb(32, 1, 143);
+} */
+
+section .season-clock {
+   background-color: aqua;
+   width: 30%;
+   margin: 0 auto;
+   text-align: center;
+   font-family: 'Times New Roman', Times, serif;
+}
+
+/* section .season-clock .dark {
+   background-color: rgb(2, 4, 167);
+   /* width: 30%;
+   margin: 0 auto; 
+} */
