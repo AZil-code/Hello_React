@@ -26,7 +26,7 @@ export function SeasonClock() {
       const intId = setInterval(() => setTimer(new Date()), 1000);
 
       return () => clearInterval(intId);
-   });
+   }, []);
 
    function onToggleDarkMode() {
       setIsDark(!isDark);

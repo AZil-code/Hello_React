@@ -1,5 +1,6 @@
 import { AnimalList } from './cmps/AnimalList.jsx';
 import { AppHeader } from './cmps/AppHeader.jsx';
+import { CountDown } from './cmps/CountDown.jsx';
 import { Home } from './cmps/Home.jsx';
 import { SeasonClock } from './cmps/SeasonClock.jsx';
 
@@ -17,7 +18,8 @@ export function RootCmp() {
          <main>
             <Home />
             {/* <AnimalList animalInfos={animalInfo} /> */}
-            <SeasonClock />
+            {/* <SeasonClock /> */}
+            <CountDown toTime={Date.now() + 20000} startFrom={10} onDone={() => console.log('Done!')} />
          </main>
       </section>
    );

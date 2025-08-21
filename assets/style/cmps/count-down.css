@@ -1,0 +1,18 @@
+section .count-down-container {
+   margin: 0 auto;
+   text-align: center;
+   background-color: aquamarine;
+   height: 200px;
+   display: grid;
+   place-items: center;
+   border-width: 2px;
+   border-style: double;
+}
+
+.count-down-container .timer {
+   text-align: center;
+}
+
+.count-down-container .last-seconds {
+   color: red;
+}
