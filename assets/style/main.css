@@ -4,6 +4,7 @@
 @import 'cmps/animal-list.css';
 @import 'cmps/season-clock.css';
 @import 'cmps/count-down.css';
+@import 'cmps/watcher-app.css';
 
 /* Vars */
 :root {

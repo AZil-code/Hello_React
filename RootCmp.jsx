@@ -3,6 +3,7 @@ import { AppHeader } from './cmps/AppHeader.jsx';
 import { CountDown } from './cmps/CountDown.jsx';
 import { Home } from './cmps/Home.jsx';
 import { SeasonClock } from './cmps/SeasonClock.jsx';
+import { WatcherApp } from './cmps/WatcherApp.jsx';
 import { utilService } from './services/util.service.js';
 
 const animalInfo = [
@@ -26,7 +27,8 @@ export function RootCmp() {
             <Home />
             {/* <AnimalList animalInfos={animalInfo} /> */}
             {/* <SeasonClock /> */}
-            <CountDown toTime={Date.now() + 1000} startFrom={3} onDone={countDownIsDone} />
+            {/* <CountDown toTime={Date.now() + 1000} startFrom={3} onDone={countDownIsDone} /> */}
+            <WatcherApp />
          </main>
       </section>
    );
