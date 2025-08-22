@@ -1,4 +1,6 @@
-const { useState, useEffect } = React;
+import { utilService } from '../services/util.service.js';
+
+const { useState, useEffect, useRef } = React;
 
 export function CountDown({ toTime, startFrom, onDone }) {
    const [counter, setCounter] = useState(toTime ? calculateToSeconds() : startFrom);
@@ -25,11 +27,12 @@ export function CountDown({ toTime, startFrom, onDone }) {
    function generateTimer() {
       let output;
       if (toTime) {
-         const hours = Math.floor(counter / 3600);
+         const timeComponents = [];
+         timeComponents.push(Math.floor(counter / 3600));
          let remains = counter % 3600;
-         const minutes = Math.floor(remains / 60);
-         const seconds = remains % 60;
-         output = [hours, minutes, seconds].map((num) => (num < 10 ? `0${num}` : num)).join(':');
+         timeComponents.push(Math.floor(remains / 60));
+         timeComponents.push(remains % 60);
+         output = utilService.formatClock(timeComponents);
       } else output = counter;
       return <h1 className={`timer ${timerClass}`}>{output}</h1>;
    }

@@ -1,5 +1,7 @@
 // import { useState } from 'react';
 
+import { utilService } from '../services/util.service.js';
+
 const { useState, useEffect } = React;
 const dayNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 const monthNames = [
@@ -41,9 +43,7 @@ export function SeasonClock() {
    }
 
    function generateClock() {
-      return [timer.getHours(), timer.getMinutes(), timer.getSeconds()]
-         .map((num) => (num < 10 ? `0${num}` : num))
-         .join(':');
+      return utilService.formatClock([timer.getHours(), timer.getMinutes(), timer.getSeconds()]);
    }
 
    day = dayNames[timer.getDay()];
