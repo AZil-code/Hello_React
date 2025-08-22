@@ -8,6 +8,7 @@ export const utilService = {
    getMonthName,
    animateCSS,
    formatClock,
+   randomizeString,
 };
 
 function makeId(length = 6) {
@@ -119,4 +120,13 @@ function animateCSS(el, animation = 'bounce') {
  */
 function formatClock(timeParts) {
    return timeParts.map((num) => (num < 10 ? `0${num}` : num)).join(':');
+}
+
+/**
+ * Takes arrays of string as arguments, and generates a random string using one random string from each list
+ * @param  {...any} strArrays Unlimited amount of string arrays
+ * @returns A randomized string
+ */
+function randomizeString(...strArrays) {
+   return strArrays.map((strArray) => strArray[Math.floor(Math.random() * strArray.length)]).join(' ');
 }
