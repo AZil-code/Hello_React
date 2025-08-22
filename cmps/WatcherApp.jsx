@@ -34,18 +34,36 @@ export function WatcherApp() {
    function generateWatcher(watcher) {
       return (
          <div className="watcher-card" key={watcher.id}>
-            <img src="assets/img/season-imgs/autumn.png" className="wathcer-img" />
+            <img src="assets/img/season-imgs/autumn.png" />
             <h3 className="watcher-title">{watcher.fullname}</h3>
-            <button className="remove-watcher">X</button>
-            <button className="select-watcher">Select</button>
+            <button className="remove-watcher" onClick={() => onRemove(watcher.id)}>
+               X
+            </button>
+            <button className="select-watcher" onClick={() => onSelect(watcher.id)}>
+               Select
+            </button>
          </div>
       );
+   }
+
+   function onAdd() {
+      console.log('Add watcher');
+   }
+
+   function onRemove(watcherId) {
+      console.log('Remove watcher ' + watcherId);
+   }
+
+   function onSelect(watcherId) {
+      console.log('Select watcher ' + watcherId);
    }
 
    return (
       <section className="watcher-app">
          <h1>Watcher App</h1>
-         <button className="add-watcher-button">Add Watcher</button>
+         <button className="add-watcher-button" onClick={onAdd}>
+            Add Watcher
+         </button>
          <article className="watcher-container">{renderWatchers()}</article>
       </section>
    );
