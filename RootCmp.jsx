@@ -3,6 +3,7 @@ import { AppHeader } from './cmps/AppHeader.jsx';
 import { CountDown } from './cmps/CountDown.jsx';
 import { Home } from './cmps/Home.jsx';
 import { SeasonClock } from './cmps/SeasonClock.jsx';
+import { utilService } from './services/util.service.js';
 
 const animalInfo = [
    { type: 'Malayan Tiger', count: 787 },
@@ -10,6 +11,12 @@ const animalInfo = [
    { type: 'Fin Whale', count: 28 },
    { type: 'Belgium Malonoa', count: 20000 },
 ];
+
+function countDownIsDone(el) {
+   console.log(el);
+   const animProm = utilService.animateCSS(el);
+   console.log('Done!');
+}
 
 export function RootCmp() {
    return (
@@ -19,7 +26,7 @@ export function RootCmp() {
             <Home />
             {/* <AnimalList animalInfos={animalInfo} /> */}
             {/* <SeasonClock /> */}
-            <CountDown toTime={Date.now() + 20000} startFrom={10} onDone={() => console.log('Done!')} />
+            <CountDown toTime={Date.now() + 1000} startFrom={3} onDone={countDownIsDone} />
          </main>
       </section>
    );

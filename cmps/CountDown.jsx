@@ -4,11 +4,12 @@ const { useState, useEffect, useRef } = React;
 
 export function CountDown({ toTime, startFrom, onDone }) {
    const [counter, setCounter] = useState(toTime ? calculateToSeconds() : startFrom);
+   const clockRef = useRef(null);
    useEffect(() => {
       const intervalId = setInterval(() => countDown(), 1000);
       if (counter <= 0) {
          clearInterval(intervalId);
-         onDone();
+         onDone(clockRef.current);
       }
       return () => {
          clearInterval(intervalId);
@@ -34,7 +35,11 @@ export function CountDown({ toTime, startFrom, onDone }) {
          timeComponents.push(remains % 60);
          output = utilService.formatClock(timeComponents);
       } else output = counter;
-      return <h1 className={`timer ${timerClass}`}>{output}</h1>;
+      return (
+         <h1 className={`timer ${timerClass}`} ref={clockRef}>
+            {output}
+         </h1>
+      );
    }
 
    return <section className="count-down-container">{generateTimer()}</section>;
