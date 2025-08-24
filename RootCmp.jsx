@@ -26,10 +26,10 @@ export function RootCmp() {
          <AppHeader />
          <main>
             <Home />
-            {/* <AnimalList animalInfos={animalInfo} /> */}
-            {/* <SeasonClock /> */}
-            {/* <CountDown toTime={Date.now() + 1000} startFrom={3} onDone={countDownIsDone} /> */}
-            {/* <WatcherApp /> */}
+            <AnimalList animalInfos={animalInfo} />
+            <SeasonClock />
+            <CountDown toTime={Date.now() + 1000} startFrom={3} onDone={countDownIsDone} />
+            <WatcherApp />
             <MouseMonitor />
          </main>
       </section>
