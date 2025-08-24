@@ -30,64 +30,71 @@ export function WatcherApp() {
    const [selectedWatcher, setSelectedWatcher] = useState(null);
 
    useEffect(() => {
-      let isMounted = true; // avoid setting state if component unmounted
-
-      async function fetchData() {
-         try {
-            const data = await watcherService.query(); // call model layer
-            console.log(data);
-            if (isMounted) {
-               setWatchers(data);
-            }
-         } catch (err) {
-            console.error('Error fetching items', err);
-         }
-      }
-
-      fetchData();
-
-      return () => {
-         isMounted = false;
-      };
+      fetchWatchers();
    }, []);
+
+   async function fetchWatchers() {
+      try {
+         const data = await watcherService.query();
+         setWatchers(data);
+      } catch (err) {
+         console.error(err);
+      }
+   }
 
    function renderWatchers() {
       return watchers.map((watcher) => generateWatcherEl(watcher));
    }
 
    function generateWatcherEl(watcher) {
-      console.log(watcher);
+      const isSelected = selectedWatcher === watcher.id;
       return (
-         <div className="watcher-card" key={watcher.id}>
+         <div className={`watcher-card ${isSelected ? 'selected' : ''}`} key={watcher.id}>
             <img src="assets/img/season-imgs/autumn.png" />
             <h3 className="watcher-title">{watcher.fullName}</h3>
             <button className="remove-watcher" onClick={() => onRemove(watcher.id)}>
                X
             </button>
-            <button className="select-watcher" onClick={() => onSelect(watcher.id)}>
+            <button className={`select-watcher ${isSelected ? 'toggled' : ''}`} onClick={() => onSelect(watcher.id)}>
                Select
             </button>
          </div>
       );
    }
 
-   function onAdd() {
-      console.log('Add watcher');
-      console.log(watchers);
+   function renderModal() {
+      const watcher = watchers.find((watcher) => selectedWatcher === watcher.id);
+      return (
+         <div className="watcher-details">
+            {watcher.movies.map((movie) => (
+               <li key={`${watcher.id}-${movie}`}>{movie}</li>
+            ))}
+            <button onClick={() => setSelectedWatcher(null)}>Close</button>
+         </div>
+      );
    }
 
-   function onRemove(watcherId) {
-      console.log('Remove watcher ' + watcherId);
+   // Add/remove/select functions can be made sync - send the request to db, and modify the local data
+   async function onAdd() {
+      const name = prompt('Watcher Name:');
+      await watcherService.save({ fullName: name });
+      fetchWatchers();
+   }
+
+   async function onRemove(watcherId) {
+      await watcherService.remove(watcherId);
+      fetchWatchers();
    }
 
    function onSelect(watcherId) {
-      console.log('Select watcher ' + watcherId);
+      setSelectedWatcher(watcherId !== selectedWatcher ? watcherId : null);
    }
 
    if (!watchers) return <h1>Loading...</h1>;
    return (
       <section className="watcher-app">
          <h1>Watcher App</h1>
+         {selectedWatcher && renderModal()}
          <button className="add-watcher-button" onClick={onAdd}>
             Add Watcher
          </button>
