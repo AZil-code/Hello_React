@@ -1,4 +1,4 @@
-const { useState } = React;
+const { useState, useEffect } = React;
 
 /* 
 isOn : true,
@@ -12,8 +12,21 @@ export function MouseMonitor() {
    const [isOn, setIsOn] = useState(true);
    const [pos, setPos] = useState({ x: 0, y: 0 });
 
+   useEffect(() => {
+      if (isOn) {
+         console.log('add');
+         document.addEventListener('mousemove', updatePos);
+      }
+
+      return () => document.removeEventListener('mousemove', updatePos);
+   }, [isOn]);
+
    function onControlClick() {
       setIsOn((prev) => !prev);
+   }
+
+   function updatePos({ clientX, clientY }) {
+      setPos({ x: clientX, y: clientY });
    }
 
    return (
