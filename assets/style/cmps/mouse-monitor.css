@@ -1,0 +1,9 @@
+.mouse-monitor {
+   background-color: black;
+   color: white;
+   position: absolute;
+   bottom: 0;
+   right: 0;
+   height: 10%;
+   width: 10%;
+}
